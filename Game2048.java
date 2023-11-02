@@ -72,6 +72,7 @@ public class Game2048{
         print();
         if (over()) {
             System.out.println("游戏结束，得分" + score + "，步数" + step);
+            System.exit(-1);
         }
     }
 
