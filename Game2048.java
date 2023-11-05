@@ -2,6 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game2048 {
+    //
     private static final int UP = 1;
     private static final int DOWN = 2;
     private static final int LEFT = 3;
