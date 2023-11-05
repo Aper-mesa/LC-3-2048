@@ -3,11 +3,12 @@ import java.util.Scanner;
 
 public class Game2048 {
     //2023/11/5
+
     private static final int UP = 1;
     private static final int DOWN = 2;
     private static final int LEFT = 3;
     private static final int RIGHT = 4;
-    //创建游戏主体：一个4*4二维数组
+    //创建游戏主体：一个4*4二维数组 1234454
     static int[][] board = new int[4][4];
     static int score = 0;
     static int step = 0;
