@@ -85,7 +85,7 @@ public class Game2048 {
 
     //移动
 private static void move(int direction) {
-        // 一种新思路是 用一个dowhile嵌套减少无效遍历 如果一个方向不可能继续移动就停止循环
+        // 一种思路是 用一个dowhile嵌套减少无效遍历 如果一个方向不可能继续移动就停止循环 减少了资源的无效利用
         final int size = 4;
         boolean tileMoved;
         if (direction == UP) {
