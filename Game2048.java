@@ -8,8 +8,6 @@ public class Game2048 {
     private static final int RIGHT = 4;
     //创建游戏主体：一个4*4二维数组
     static int[][] board = new int[4][4];
-    static int score = 0;
-    static int step = 0;
     static Random r = new Random();
     //判断用户的指令是否有效，即数组是否真的发生了变化
     private static boolean changed;
@@ -29,7 +27,6 @@ public class Game2048 {
 
     //打印游戏
     private static void print() {
-        System.out.println("得分" + score + "，步数" + step);
         for (int[] row : board) {
             for (int i : row) {
                 if (i == 0)
@@ -67,13 +64,8 @@ public class Game2048 {
         move(direction);
         merge(direction);
         move(direction);
-        if (changed) step++;
         spawn();
         print();
-        if (over()) {
-            System.out.println("游戏结束，得分" + score + "，步数" + step);
-            System.exit(-1);
-        }
     }
 
     //生成新数字的方法：随机找一个元素，如果不是0则再循环一次；如果是0就在这里生成2或4（概率五五开）。如果用户执行了移动操作但是数组没有变化则不生成。
@@ -152,7 +144,6 @@ public class Game2048 {
                     if (board[i][j] != 0 && board[i][j] == board[i + 1][j]) {
                         changed = true;
                         board[i][j] = board[i + 1][j] * 2;
-                        score += board[i][j];
                         board[i + 1][j] = 0;
                     }
                 }
@@ -163,7 +154,6 @@ public class Game2048 {
                     if (board[i][j] != 0 && board[i][j] == board[i - 1][j]) {
                         changed = true;
                         board[i][j] = board[i - 1][j] * 2;
-                        score += board[i][j];
                         board[i - 1][j] = 0;
                     }
                 }
@@ -174,7 +164,6 @@ public class Game2048 {
                     if (board[i][j] != 0 && board[i][j] == board[i][j + 1]) {
                         changed = true;
                         board[i][j] = board[i][j + 1] * 2;
-                        score += board[i][j];
                         board[i][j + 1] = 0;
                     }
                 }
@@ -185,34 +174,10 @@ public class Game2048 {
                     if (board[i][j] != 0 && board[i][j] == board[i][j - 1]) {
                         changed = true;
                         board[i][j] = board[i][j - 1] * 2;
-                        score += board[i][j];
                         board[i][j - 1] = 0;
                     }
                 }
             }
         }
-    }
-
-    //判断游戏是否结束，即是否已经无法移动
-    private static boolean over() {
-        for (int[] row : board) {
-            for (int i : row) {
-                if (i == 0) return false;
-            }
-        }
-        if (board[0][1] == board[1][1] || board[2][1] == board[1][1] || board[1][0] == board[1][1] || board[1][2] == board[1][1])
-            return false;
-        else if (board[0][2] == board[1][2] || board[2][2] == board[1][2] || board[1][3] == board[1][2])
-            return false;
-        else if (board[2][0] == board[2][1] || board[3][1] == board[2][1] || board[2][2] == board[2][1])
-            return false;
-        else if (board[3][2] == board[2][2] || board[2][3] == board[2][2])
-            return false;
-        else if (board[1][0] == board[0][0] || board[0][1] == board[0][0] || board[0][2] == board[0][3] || board[1][3] == board[0][3])
-            return false;
-        else if (board[0][1] == board[0][2] || board[1][0] == board[2][0] || board[3][1] == board[3][2] || board[1][3] == board[2][3])
-            return false;
-        else
-            return board[2][0] != board[3][0] && board[3][1] != board[3][0] && board[2][3] != board[3][3] && board[3][2] != board[3][3];
     }
 }
