@@ -55,7 +55,7 @@ and r5 r5 #0
 lea r5 board00 ;r5存字符地址
 and r3 r3 #0 ;r3作为外部循环检测
 add r3 r3 #3 ;循环四次
-loop_new_line ;外层循环打印label(用于在每四个元素后加\n)
+loop_newLine ;外层循环打印label(用于在每四个元素后加\n)
 and r4 r4 #0 ;r4作为内部循环检测
 add r4 r4 #3 ;循环四次,总计循环4x4次
 loop_print ;内层循环用打印label
@@ -70,10 +70,11 @@ brzp loop_print ;继续内层循环
 ld r0 newLine ;打印换行符
 out
 add r3 r3 #-1 
-brzp loop_new_line ;继续外层循环
+brzp loop_newLine ;继续外层循环
 ret
 
             SPAWN ;随机在一个空位生成一个元素
+            
 loop_spawn
 
 ret
