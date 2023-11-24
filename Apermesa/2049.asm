@@ -48,21 +48,16 @@ mod2_complete
 ret
 
             PRINT ;打印游戏
-ld r0 board00
 and r6 r6 #0
+add r6 r6 #15
 and r5 r5 #0
-ld r5 board00
+lea r5 board00 ;r5存字符地址
 loop_print
-
-
-
-
-add r0 r0 r6
-out 
-add r6 r6 #1
-and r5 r5 #0 ;用r6和16减一下，用于判断循环次数
-add r5 r6 #-3
-brn loop_print
+ldr r0 r5 #0
+out
+add r5 r5 #1
+add r6 r6 #-1
+brzp loop_print
 ret
 
             MAIN ;游戏入口
@@ -77,7 +72,7 @@ temp_mod1
 temp_mod2
 ;以下16个是二维数组的所有元素，代表游戏主体
 temp_element
-board00 .fill #48
+board00 .fill #49
 board01 .fill #48
 board02 .fill #48
 board03 .fill #48
@@ -92,5 +87,5 @@ board23 .fill #48
 board30 .fill #48
 board31 .fill #48
 board32 .fill #48
-board33 .fill #49
+board33 .fill #50
 .end
