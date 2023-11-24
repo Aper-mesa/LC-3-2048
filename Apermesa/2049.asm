@@ -53,6 +53,11 @@ and r6 r6 #0
 add r6 r6 #15
 and r5 r5 #0
 lea r5 board00 ;r5存字符地址
+and r3 r3 #0
+add r3 r3 #3
+loop_new_line
+and r4 r4 #0
+add r4 r4 #3
 loop_print
 ldr r0 r5 #0
 out ;打印元素
@@ -60,7 +65,12 @@ ld r0 space
 out ;打印一个空格
 add r5 r5 #1
 add r6 r6 #-1
+add r4 r4 #-1
 brzp loop_print
+ld r0 newLine
+out
+add r3 r3 #-1
+brzp loop_new_line
 ret
 
             SPAWN ;随机在一个空位生成一个元素
