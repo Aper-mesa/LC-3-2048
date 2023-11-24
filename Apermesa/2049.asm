@@ -48,6 +48,7 @@ mod2_complete
 ret
 
             PRINT ;打印游戏
+            
 and r6 r6 #0
 add r6 r6 #15
 and r5 r5 #0
@@ -62,6 +63,11 @@ add r6 r6 #-1
 brzp loop_print
 ret
 
+            SPAWN ;随机在一个空位生成一个元素
+loop_spawn
+
+ret
+
             MAIN ;游戏入口
 
 jsr print
@@ -72,11 +78,11 @@ lcg_c .fill #19 ;线性同余公式中的C
 lcg_m .fill #-10007 ;线性同余公式中的m
 temp_mod1
 temp_mod2
-;以下16个是二维数组的所有元素，代表游戏主体
 temp_element
-space .fill #32
-newLine .fill #10
-board00 .fill #49
+space .fill #32 ;空格
+newLine .fill #10 ;换行
+;以下16个是二维数组的所有元素，代表游戏主体
+board00 .fill #48
 board01 .fill #48
 board02 .fill #48
 board03 .fill #48
@@ -91,5 +97,5 @@ board23 .fill #48
 board30 .fill #48
 board31 .fill #48
 board32 .fill #48
-board33 .fill #50
+board33 .fill #48
 .end
