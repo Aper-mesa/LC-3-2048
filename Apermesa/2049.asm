@@ -54,7 +54,9 @@ and r5 r5 #0
 lea r5 board00 ;r5存字符地址
 loop_print
 ldr r0 r5 #0
-out
+out ;打印元素
+ld r0 space
+out ;打印一个空格
 add r5 r5 #1
 add r6 r6 #-1
 brzp loop_print
@@ -72,6 +74,8 @@ temp_mod1
 temp_mod2
 ;以下16个是二维数组的所有元素，代表游戏主体
 temp_element
+space .fill #32
+newLine .fill #10
 board00 .fill #49
 board01 .fill #48
 board02 .fill #48
