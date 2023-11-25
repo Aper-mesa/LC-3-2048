@@ -129,7 +129,9 @@ add r1 r1 #1
 st r1 temp_index
 add r1 r1 #-4
 brn moveUpLoop
-
+;这两行初始化temp_index
+and r1 r1 #0
+st r1 temp_index
 ret
 
             MAIN ;游戏入口
