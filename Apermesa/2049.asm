@@ -64,16 +64,16 @@ loop_spawn
     JSR LCG          ; 调用LCG生成伪随机数
     LD R7, temp_address
     LD R1, random
-    AND R2, R1, #3   ; R2 = a，获取0到3的随机数
+    AND R2, R1, #1   ; R2 = a，获取0或1的随机数
+    ADD R2, R2, #1   ; R2 = a + 1，将0或1转换为1或2
     ; 计算board[a][b]的地址
     LEA R3, board00  ; R3 = board数组起始地址
     ADD R3, R3, R2   ; R3 = board[a][b]地址
     LDR R4, R3, #0   ; R4 = board[a][b]值
     BRnp loop_spawn   ; 如果board[a][b]是0，重新运行SPAWN
-    ; board[a][b]不是0，可以在这里放置2或4
+    ; board[a][b]不是0，可以在这里放置1或2
     ADD R1, R4, #1   ; R1 = board[a][b] + 1
-    ADD R1, R1, #1   ; R1 = board[a][b] + 2
-    STR R1, R3, #0   ; 将2或4存入board[a][b]
+    STR R1, R3, #0   ; 将1或2存入board[a][b]
     RET
 
 
