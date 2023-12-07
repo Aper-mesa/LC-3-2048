@@ -57,7 +57,7 @@ ret
 
 temp_random .fill #0
 
-SPAWN ; 生成随机数1或2
+            SPAWN ;生成随机数0或1
 
 loop_spawn
     ST R7, temp_address
@@ -67,19 +67,18 @@ loop_spawn
     AND R2, R1, #3   ; R2 = a，获取0-3的随机数
     ADD R2, R2, #1   ; R2 = a + 1，将0-3转换为1-4
     ; 计算board[a][b]的地址
-    LEA R3, board00  ; R3 = board数组起始地址
-    ADD R3, R3, R2   ; R3 = board[a][b]地址
-    LDR R4, R3, #0   ; R4 = board[a][b]值
-    BRnp loop_spawn   ; 如果board[a][b]是0，重新运行SPAWN
-    ; 检查是否还有空位
-    AND R5, R4, #3   ; R5 = board[a][b]的低2位
-    BRnp loop_spawn   ; 如果低2位为0，重新运行SPAWN
-    ; board[a][b]不是0且有空位，可以在这里放置1或2
-    ADD R1, R4, #1   ; R1 = board[a][b] + 1
-    STR R1, R3, #0   ; 将1或2存入board[a][b]
+    ADD R2, R2, R2     ; R2 = a * 2
+    ADD R2, R2, R2     ; R2 = a * 4
+    ADD R2, R2, R1     ; R2 = a * 4 + b
+    LEA R3, board00    ; R3 = board数组起始地址
+    ADD R3, R3, R2     ; R3 = board[a][b]地址
+    LDR R4, R3, #0     ; R4 = board[a][b]值
+BRnp loop_spawn     ; 如果board[a][b]不是0，重新运行SPAWN
+    ;board[a][b]是0，可以在这里放置2或4
+    AND R1, R1, #1     ; R1的最低位是0或1
+    ADD R1, R1, #1     ; 如果最低位是0，R1=1；如果是1，R1=2
+    STR R1, R3, #0     ; 将2或4存入board[a][b]
     RET
-
-
 
 space .fill #32 ;空格
 newLine .fill #10 ;换行
