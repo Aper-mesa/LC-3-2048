@@ -69,7 +69,7 @@ loop_spawn
     ; 计算board[a][b]的地址
     ADD R2, R2, R2     ; R2 = a * 2
     ADD R2, R2, R2     ; R2 = a * 4
-    ADD R2, R2, R1     ; R2 = a * 4 + b
+    
     LEA R3, board00    ; R3 = board数组起始地址
     ADD R3, R3, R2     ; R3 = board[a][b]地址
     LDR R4, R3, #0     ; R4 = board[a][b]值
