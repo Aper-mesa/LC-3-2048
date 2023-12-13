@@ -172,6 +172,8 @@ INPUT_OTHER ;其他输入事件
 ; 执行操作
 ld r0 character_?
 out
+ld r0 newLine
+out
 ret
 
             MAIN ;游戏入口
