@@ -174,6 +174,7 @@ ld r0 character_?
 out
 ld r0 newLine
 out
+br infinite_loop
 ret
 
             MAIN ;游戏入口
